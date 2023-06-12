@@ -11,5 +11,7 @@ router.get('/stores', catchErrors(storeController.getStores));
 router.get('/add', storeController.addStore);
 //create store form hadler
 router.post('/add', storeController.createStore);
+router.get('/stores/:id/edit', catchErrors(storeController.editStore));
+router.post('/add/:id', storeController.updateStore);
 
 module.exports = router;
