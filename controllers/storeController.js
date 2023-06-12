@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const Store = mongoose.model('Store');
 
 exports.homePage = (req, res) => {
-  //   console.log(req.name);
-  req.flash('error', 'Oops! Something went wrong!');
-  req.flash('success', 'Success');
-  req.flash('warning', 'Ay ay ay, careful!');
-  req.flash('info', `Better know what you're doing dumbass`);
   res.render('index');
 };
 
@@ -16,15 +11,21 @@ exports.addStore = (req, res) => {
   });
 };
 
-exports.createStore = (req, res) => {
+exports.createStore = async (req, res) => {
   // taking store details from the input fields, and passing it here into store variable as
   // JSON using req.body. .body will automatically parse the data appropriately.
-  const store = new Store(req.body);
+  const store = await new Store(req.body).save();
   //   fire a connection to MongoDB to take
   store.save();
   req.flash(
     'success',
     `Successfully created ${store.name}. Care to leave a review?`
   );
-  res.redirect('/');
+  res.redirect(`/store/${store.slug}`);
+};
+
+exports.getStores = async (req, res) => {
+  // query the database for list of all stores here
+  const stores = await Store.find();
+  res.render('stores', { title: 'Stores', stores: stores });
 };

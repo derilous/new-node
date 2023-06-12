@@ -1,7 +1,8 @@
 extends layout 
-include mixins/storeForm
 
-block content
+include mixins/storeForm 
+
+block content  
     .inner 
-        h2= title
-        +storeForm({name: 'Tim Hortons'})
+        h1=title 
+        +storeForm()

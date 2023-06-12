@@ -1,0 +1,10 @@
+extends layout 
+
+include mixins/storeCard
+
+block content
+    .inner 
+        h2= title
+        //- dumping stores variable that has store data we asked from the database in storeController.js
+        each store in stores 
+            +storeCard(store)
