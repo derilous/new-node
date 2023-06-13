@@ -10,8 +10,19 @@ router.get('/', catchErrors(storeController.getStores));
 router.get('/stores', catchErrors(storeController.getStores));
 router.get('/add', storeController.addStore);
 //create store form hadler
-router.post('/add', storeController.createStore);
+router.post(
+  '/add',
+  storeController.upload,
+  catchErrors(storeController.resize),
+  catchErrors(storeController.createStore)
+);
+
 router.get('/stores/:id/edit', catchErrors(storeController.editStore));
-router.post('/add/:id', storeController.updateStore);
+router.post(
+  '/add/:id',
+  storeController.upload,
+  catchErrors(storeController.resize),
+  catchErrors(storeController.updateStore)
+);
 
 module.exports = router;
