@@ -49,6 +49,6 @@ exports.updateStore = async (req, res) => {
     'success',
     `Successfully updated ${store.name}. <a href="/store/${store.slug}>View Store</a>`
   );
+  // redirect to store and tell user it worked
   res.redirect(`/stores/${store._id}/edit`);
-  // redirect to store and tell them it worked
 };
