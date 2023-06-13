@@ -15,8 +15,7 @@ exports.createStore = async (req, res) => {
   // taking store details from the input fields, and passing it here into store variable as
   // JSON using req.body. .body will automatically parse the data appropriately.
   const store = await new Store(req.body).save();
-  //   fire a connection to MongoDB to take
-  store.save();
+  //   fire a connection to MongoDB to take details and save
   req.flash(
     'success',
     `Successfully created ${store.name}. Care to leave a review?`
